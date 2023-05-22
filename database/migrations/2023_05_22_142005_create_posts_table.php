@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Category;
+use App\Models\User;
+use Egulias\EmailValidator\Parser\Comment;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +23,7 @@ return new class extends Migration
 
             $table->foreignId('user_id');
             $table->foreignId('category_id');
+
         });
     }
 
