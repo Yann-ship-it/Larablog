@@ -12,10 +12,25 @@
                 {{ session('succes') }}
             @endif
 
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Bienvenue !") }}
-                </div>
+            <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+                @foreach ($posts as $post)
+                <div class="justify-center py-3 pl-3">
+                    <h2 class="text-white">{{ $post->title }}</h2>
+
+                    <x-link href="{{ route('posts.edit', $post) }}">Modifier mon post </x-link>
+
+
+                    <x-link href="" 
+                        onclick="event.preventDefault;
+                            document.getElementById('post-destroy').submit();
+                        ">Supprimer
+                        <form action={{ route('posts.destroy', $post) }} method="post" id="post-destroy">
+                            @csrf
+                            @method('delete')
+                        </form>
+                    </x-link>
+                </div> 
+                @endforeach
             </div>
         </div>
     </div>

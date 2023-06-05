@@ -11,14 +11,18 @@ class Post extends Model
 
     protected $guarded = [];
 
-   // public static function boot() {
-    //    parent::boot();
+    public static function boot() {
+        parent::boot();
 
-      //  self::creating(function ($post) {
-        //    $post->user()->associate(auth()->user()->id);
-          //  $post->category()->associate(request()->category);
-       // });
-    //}
+        self::creating(function ($post) {
+            $post->user()->associate(auth()->user()->id);
+            $post->category()->associate(request()->category);
+        });
+
+        self::updating(function ($post) {
+            $post->category()->associate(request()->category);
+        });
+    }
 
     public function user() {
         return $this->belongsTo(User::class);
