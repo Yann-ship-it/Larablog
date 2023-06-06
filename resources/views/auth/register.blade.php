@@ -24,6 +24,7 @@
                             type="password"
                             name="password"
                             required autocomplete="new-password" />
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><span class="text-red-700">* </span>8 catactères</p>
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
